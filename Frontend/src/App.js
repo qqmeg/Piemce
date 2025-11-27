@@ -7,6 +7,7 @@ import {
   Navigate,
   useLocation,
 } from "react-router-dom";
+import RegisterForm from '../src/components/RegisterForm/RegisterForm'
 
 export default function App() {
   return (
@@ -26,6 +27,9 @@ export default function App() {
             <li>
               <Link to="/dashboard">Dashboard</Link>
             </li>
+            <li>
+              <Link to="/register">Register</Link> 
+            </li>
           </ul>
         </nav>
 
@@ -33,12 +37,11 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/reset" element={<PasswordReset />} />
+          <Route path="/register" element={<Register/>} />
           <Route
             path="/dashboard"
             element={
-              <RequireAuth>
                 <Dashboard />
-              </RequireAuth>
             }
           />
         </Routes>
@@ -58,9 +61,17 @@ function Home() {
 function Login() {
   return (
     <div>
-      <h2>Login</h2>
+      
     </div>
   );
+}
+
+function Register() {
+  return (
+    <div>
+      <RegisterForm/>
+    </div>
+  )
 }
 
 function PasswordReset() {
