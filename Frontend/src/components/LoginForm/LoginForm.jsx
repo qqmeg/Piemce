@@ -43,8 +43,20 @@ const LoginForm = () => {
         if (!validateForm()) return;
         
         console.log('Form data:', formData);
-        
-        // Save userData logic here
+
+        try {
+            const response = await fetch('url', {
+                method: 'POST',
+                headers: {
+                    'Content-Type':'applications/json'
+                },
+                body: JSON.stringify(formData)
+            });
+            const data = await response.json();
+            console.log("Success"); 
+        } catch(error) {
+            console.log(error);
+        }
     };
 
     return (
