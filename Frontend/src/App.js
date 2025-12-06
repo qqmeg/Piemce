@@ -8,6 +8,7 @@ import {
   useLocation,
 } from "react-router-dom";
 import RegisterForm from '../src/components/RegisterForm/RegisterForm'
+import LoginForm from '../src/components/LoginForm/LoginForm'
 
 export default function App() {
   return (
@@ -61,7 +62,7 @@ function Home() {
 function Login() {
   return (
     <div>
-      
+      <LoginForm/>
     </div>
   );
 }
