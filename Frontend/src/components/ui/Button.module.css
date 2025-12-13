@@ -1,1 +1,57 @@
-/* Vova should write some styles */
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Favorit', ui-sans-serif, system-ui, sans-serif;
+  font-weight: 500;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  font-size: 15px;
+  line-height: 20px;
+  padding: 26px;
+  min-height: 56px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.primary {
+  background-color: #0d0d0d;
+  color: #ffffff;
+  border: 1px solid #0d0d0d;
+}
+
+.primary:hover:not(:disabled) {
+  background-color: rgba(13, 13, 13, 0.8);
+}
+
+.primary:active:not(:disabled) {
+  background-color: rgba(13, 13, 13, 0.9);
+}
+
+.secondary {
+  background-color: rgba(255, 255, 255, 0.06);
+  color: #ffffff;
+  border: 0.5px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(30px);
+}
+
+.secondary:hover:not(:disabled) {
+  background-color: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+@media (max-width: 640px) {
+  .button {
+    min-height: 50px;
+    padding: 20px;
+    font-size: 14px;
+  }
+}

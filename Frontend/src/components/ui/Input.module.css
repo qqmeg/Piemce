@@ -1,1 +1,108 @@
-/* Vova should write some styles */
+.container {
+  height: 58px;
+  margin-bottom: 16px;
+  position: relative;
+}
+
+.inputWrapper {
+  height: 100%;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  width: 100%;
+  font-size: 14px;
+  letter-spacing: 0px;
+  line-height: 17px;
+  font-weight: 400;
+  border-radius: 12px;
+  border: 0.5px solid #959593;
+  background-color: #959593;
+  background-color: rgba(149, 147, 146, 0.1);
+  position: relative;
+  transition: all 0.2s ease-in-out;
+}
+
+.inputWrapper.focused {
+  border-color: #69696c;
+  background-color: rgba(105, 105, 108, 0.1);
+}
+
+.label {
+  position: absolute;
+  left: 18px;
+  top: 19px;
+  color: #959593;
+  pointer-events: none;
+  transition: all 0.2s ease-in-out;
+  font-size: 14px;
+  letter-spacing: 0px;
+  line-height: 17px;
+  font-weight: 400;
+  z-index: 1;
+}
+
+.label.floated {
+  font-size: 11px;
+  letter-spacing: 0px;
+  line-height: 13px;
+  transform: translateY(-9px);
+  color: #69696c;
+}
+
+.input {
+  flex: 1;
+  min-width: 0;
+  padding: 19px 18px 15px;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #0d0d0d;
+  font-size: 14px;
+  letter-spacing: 0px;
+  line-height: 17px;
+  font-weight: 400;
+  width: 100%;
+  cursor: default;
+}
+
+.input:focus {
+  outline: none;
+}
+
+/* Dark mode styles */
+@media (prefers-color-scheme: dark) {
+  .inputWrapper {
+    border-color: #69696c;
+    background-color: rgba(105, 105, 108, 0.1);
+  }
+
+  .inputWrapper.focused {
+    border-color: #959593;
+    background-color: rgba(149, 147, 146, 0.1);
+  }
+
+  .label {
+    color: #959593;
+  }
+
+  .label.floated {
+    color: #959593;
+  }
+
+  .input {
+    color: #ffffff;
+  }
+}
+
+/* Hover states */
+.inputWrapper:hover {
+  border-color: #69696c;
+  background-color: rgba(105, 105, 108, 0.15);
+}
+
+@media (prefers-color-scheme: dark) {
+  .inputWrapper:hover {
+    border-color: #959593;
+    background-color: rgba(149, 147, 146, 0.15);
+  }
+}

@@ -7,8 +7,7 @@ import {
   Navigate,
   useLocation,
 } from "react-router-dom";
-import RegisterForm from '../src/components/RegisterForm/RegisterForm'
-import LoginForm from '../src/components/LoginForm/LoginForm'
+import AuthPage from './components/ui/AuthPage';
 
 export default function App() {
   return (
@@ -20,7 +19,7 @@ export default function App() {
               <Link to="/">Home</Link>
             </li>
             <li>
-              <Link to="/login">Login</Link>
+              <Link to="/auth">Auth</Link>
             </li>
             <li>
               <Link to="/reset">Reset</Link>
@@ -28,17 +27,15 @@ export default function App() {
             <li>
               <Link to="/dashboard">Dashboard</Link>
             </li>
-            <li>
-              <Link to="/register">Register</Link> 
-            </li>
           </ul>
         </nav>
 
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/auth" element={<AuthPage />} />
+          <Route path="/login" element={<AuthPage />} />
+          <Route path="/register" element={<AuthPage />} />
           <Route path="/reset" element={<PasswordReset />} />
-          <Route path="/register" element={<Register/>} />
           <Route
             path="/dashboard"
             element={
@@ -57,22 +54,6 @@ function Home() {
       <h2>Home</h2>
     </div>
   );
-}
-
-function Login() {
-  return (
-    <div>
-      <LoginForm/>
-    </div>
-  );
-}
-
-function Register() {
-  return (
-    <div>
-      <RegisterForm/>
-    </div>
-  )
 }
 
 function PasswordReset() {
