@@ -7,7 +7,7 @@ class User(models.Model):
     username = models.TextField(verbose_name="Имя", max_length=30, blank=True)
     # avatar = models.ImageField(verbose_name='Аватарка', upload_to='avatars/', null=True, blank=True)
     bio = models.TextField(verbose_name="О себе", null=True, default="no bio yet")
-    passw = models.TextField(verbose_name="Пароль", max_length=100, null=True)
+    password = models.TextField(verbose_name="Пароль", max_length=100, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:

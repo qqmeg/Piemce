@@ -10,7 +10,7 @@ from .serializers import UserSerializer
 
 @csrf_exempt
 @api_view(["GET"])
-def getuser(request, user_id=None):
+def get_user(request, user_id=None):
     try:
         user = User.objects.get(id=user_id)
         serializer = UserSerializer(user)
@@ -28,7 +28,7 @@ def create_user(request):
         print(serializer.errors)
     if not data.get("email"):
         return JsonResponse({"error": "Email обязателен"}, status=400)
-    if not data.get("passw"):
+    if not data.get("password"):
         return JsonResponse({"error": "Пароль обязателен"}, status=400)
     if not data.get("username"):
         return JsonResponse({"error": "Имя пользователя обязательно"}, status=400)
@@ -42,3 +42,31 @@ def create_user(request):
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@csrf_exempt
+@api_view(["POST"])
+def login_user(request):
+    data = request.data
+
+    if not data.get("email"):
+        return JsonResponse({"error": "Email обязателен"}, status=400)
+    if not data.get("password"):
+        return JsonResponse({"error": "Пароль обязателен"}, status=400)
+
+    try:
+        user = User.objects.get(email=data["email"])
+
+        if user.password == data["password"]:
+            serializer = UserSerializer(user)
+            return Response(
+                {"message": "Login successful", "user": serializer.data},
+                status=status.HTTP_200_OK,
+            )
+        else:
+            return JsonResponse({"error": "Неверный пароль"}, status=401)
+
+    except User.DoesNotExist:
+        return JsonResponse(
+            {"error": "Пользователь с таким email не найден"}, status=404
+        )

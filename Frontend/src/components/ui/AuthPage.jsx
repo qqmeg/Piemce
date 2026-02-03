@@ -1,32 +1,36 @@
 //MAXIM, this is AI code. Should be ok, but may need to rewrite it
 //the return part works as expected
-import { useState } from 'react';
-import Input from './Input';
-import Button from './Button';
-import ErrorMessage from './ErrorMessage';
-import PasswordResetPage from './PasswordResetPage';
-import styles from './AuthPage.module.css';
+import { useState } from "react";
+import Input from "./Input";
+import Button from "./Button";
+import ErrorMessage from "./ErrorMessage";
+import PasswordResetPage from "./PasswordResetPage";
+import styles from "./AuthPage.module.css";
 
 const AuthPage = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [showPasswordReset, setShowPasswordReset] = useState(false);
   const [formData, setFormData] = useState({
-    email: '',
-    password: '',
-    username: '',
-    confirmPassword: ''
+    email: "",
+    password: "",
+    username: "",
   });
 
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
 
   const handleChange = (field) => (e) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [field]: e.target.value
+      [field]: e.target.value,
     }));
 
-    if (field === 'email' || field === 'password' || field === 'confirmPassword' || field === 'username') {
-      setError('');
+    if (
+      field === "email" ||
+      field === "password" ||
+      field === "confirmPassword" ||
+      field === "username"
+    ) {
+      setError("");
     }
   };
 
@@ -55,23 +59,23 @@ const AuthPage = () => {
 
     try {
       const endpoint = isLogin
-        ? 'http://127.0.0.1:8000/api/users/login/'
-        : 'http://127.0.0.1:8000/api/users/create/';
+        ? "http://127.0.0.1:8000/api/users/login/"
+        : "http://127.0.0.1:8000/api/users/create/";
 
       const submitData = isLogin
         ? { email: formData.email, password: formData.password }
         : {
             email: formData.email,
             password: formData.password,
-            username: formData.username
+            username: formData.username,
           };
 
       const response = await fetch(endpoint, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(submitData)
+        body: JSON.stringify(submitData),
       });
 
       const data = await response.json();
@@ -104,22 +108,68 @@ const AuthPage = () => {
         <div className={styles.card}>
           <div className={styles.header}>
             <div className={styles.logo}>
-              <svg width="39.336" height="44" viewBox="0 0 39.336 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <ellipse cx="4.594" cy="4.594" rx="4.594" ry="4.594" transform="translate(327.923 290.661)" fill="currentColor"/>
-                <ellipse cx="4.594" cy="4.594" rx="4.594" ry="4.594" transform="translate(327.923 325.472)" fill="currentColor"/>
-                <ellipse cx="4.594" cy="4.594" rx="4.594" ry="4.594" transform="translate(312.85 299.364)" fill="currentColor"/>
-                <ellipse cx="4.594" cy="4.594" rx="4.594" ry="4.594" transform="translate(342.997 316.769)" fill="currentColor"/>
-                <ellipse cx="4.594" cy="4.594" rx="4.594" ry="4.594" transform="translate(342.997 299.364)" fill="currentColor"/>
-                <ellipse cx="4.594" cy="4.594" rx="4.594" ry="4.594" transform="translate(312.85 316.769)" fill="currentColor"/>
+              <svg
+                width="39.336"
+                height="44"
+                viewBox="0 0 39.336 44"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <ellipse
+                  cx="4.594"
+                  cy="4.594"
+                  rx="4.594"
+                  ry="4.594"
+                  transform="translate(327.923 290.661)"
+                  fill="currentColor"
+                />
+                <ellipse
+                  cx="4.594"
+                  cy="4.594"
+                  rx="4.594"
+                  ry="4.594"
+                  transform="translate(327.923 325.472)"
+                  fill="currentColor"
+                />
+                <ellipse
+                  cx="4.594"
+                  cy="4.594"
+                  rx="4.594"
+                  ry="4.594"
+                  transform="translate(312.85 299.364)"
+                  fill="currentColor"
+                />
+                <ellipse
+                  cx="4.594"
+                  cy="4.594"
+                  rx="4.594"
+                  ry="4.594"
+                  transform="translate(342.997 316.769)"
+                  fill="currentColor"
+                />
+                <ellipse
+                  cx="4.594"
+                  cy="4.594"
+                  rx="4.594"
+                  ry="4.594"
+                  transform="translate(342.997 299.364)"
+                  fill="currentColor"
+                />
+                <ellipse
+                  cx="4.594"
+                  cy="4.594"
+                  rx="4.594"
+                  ry="4.594"
+                  transform="translate(312.85 316.769)"
+                  fill="currentColor"
+                />
               </svg>
             </div>
             <h1 className={styles.title}>
-              {isLogin ? 'Welcome back' : 'Sign up'}
+              {isLogin ? "Welcome back" : "Sign up"}
             </h1>
             {!isLogin && (
-              <p className={styles.subtitle}>
-                Begin by creating an account
-              </p>
+              <p className={styles.subtitle}>Begin by creating an account</p>
             )}
           </div>
 
@@ -128,7 +178,7 @@ const AuthPage = () => {
               label="Email"
               type="email"
               value={formData.email}
-              onChange={handleChange('email')}
+              onChange={handleChange("email")}
               required
             />
 
@@ -137,7 +187,7 @@ const AuthPage = () => {
                 label="Username"
                 type="text"
                 value={formData.username}
-                onChange={handleChange('username')}
+                onChange={handleChange("username")}
                 required
               />
             )}
@@ -146,7 +196,7 @@ const AuthPage = () => {
               label="Password"
               type="password"
               value={formData.password}
-              onChange={handleChange('password')}
+              onChange={handleChange("password")}
               required
             />
 
@@ -167,7 +217,7 @@ const AuthPage = () => {
                 label="Confirm Password"
                 type="password"
                 value={formData.confirmPassword}
-                onChange={handleChange('confirmPassword')}
+                onChange={handleChange("confirmPassword")}
                 required
               />
             )}
@@ -175,7 +225,7 @@ const AuthPage = () => {
             <ErrorMessage error={error} />
 
             <Button type="submit" className={styles.submitButton}>
-              {isLogin ? 'Sign in' : 'Continue'}
+              {isLogin ? "Sign in" : "Continue"}
             </Button>
           </form>
 
@@ -187,7 +237,7 @@ const AuthPage = () => {
                 onClick={toggleMode}
                 className={styles.toggleButton}
               >
-                {isLogin ? 'Sign up' : 'Sign in'}
+                {isLogin ? "Sign up" : "Sign in"}
               </button>
             </p>
           </div>
