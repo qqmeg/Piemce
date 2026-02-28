@@ -35,7 +35,7 @@ def _get_user_from_token(request):
 
 @csrf_exempt
 @api_view(["GET"])
-def getuser(request, user_id=None):
+def get_user(request, user_id=None):
     try:
         user = User.objects.get(id=user_id)
         serializer = UserSerializer(user)
@@ -53,7 +53,7 @@ def create_user(request):
         print(serializer.errors)
     if not data.get("email"):
         return JsonResponse({"error": "Email обязателен"}, status=400)
-    if not data.get("passw"):
+    if not data.get("password"):
         return JsonResponse({"error": "Пароль обязателен"}, status=400)
     if not data.get("username"):
         return JsonResponse({"error": "Имя пользователя обязательно"}, status=400)
