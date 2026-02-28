@@ -1,9 +1,12 @@
 from django.urls import path
+from .views import getuser, create_user, auth_register, auth_login, me
 
 from .views import create_user, get_user, login_user
 
 urlpatterns = [
-    path("users/<int:user_id>/", get_user, name="getuser"),
-    path("users/create/", create_user, name="createuser"),
-    path("users/login/", login_user, name="login_user"),
+    path("users/<int:user_id>/", getuser, name='getuser'),
+    path("users/create/", create_user, name='createuser'),
+    path("auth/register/", auth_register, name="auth_register"),
+    path("auth/login/", auth_login, name="auth_login"),
+    path("me/", me, name="me"),
 ]

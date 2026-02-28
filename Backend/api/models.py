@@ -16,3 +16,21 @@ class User(models.Model):
 
     def __str__(self):
         return f"{self.email}, пользователь {id} имя {self.username}"
+
+
+class AuthToken(models.Model):
+    """
+    Упрощённый токен для dev-авторизации (не production).
+    Храним случайный ключ и связь с нашим кастомным User.
+    """
+
+    key = models.CharField(max_length=64, unique=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="tokens")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = "Токен"
+        verbose_name_plural = "Токены"
+
+    def __str__(self):
+        return f"Token({self.key[:8]}...) for user {self.user_id}"
